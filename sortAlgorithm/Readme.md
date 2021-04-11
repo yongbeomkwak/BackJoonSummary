@@ -42,3 +42,6 @@ ___
 -   개념:사전순 정렬 및 중복값 제거
 -   구현 컨셉:string와 vecotr(erase와 **unique**)사용
 -   중복값제거:erase 와 unique를 사용 그 대신 반드시 정렬을 해야함 (uniqure의 특징 때문) 
+
+##  5.10814
+-   구현:stable_sort -> 비교가 같을 경우 원래 순서를 기반으로 정렬 
