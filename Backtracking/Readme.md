@@ -25,4 +25,10 @@ BFS는 모든 분기점을 다 검사하면서 진행하는 방식이다.
 ###     2)9663
 -   체스    Queen
 -   for문의 대각선 이동 방법
- 
+
+###   3)2580
+- 한 줄 입력 받아 각 입력을 배열에 넣는 방법 사용
+- 한 줄 입력 getline(cin,stirng object)
+- 문자 하나씩 뽑아내기 sstream에 있는 istringstream
+- find(시작점,끝점,찾을값) - > 찾을 시 해당 위치(iterator) , 못찾을 시 end를 가르침
+- vector.erase(it)-> 해당 iterator가 가르키는 값 벡터에서 제거
