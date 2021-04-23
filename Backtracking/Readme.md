@@ -35,3 +35,7 @@ BFS는 모든 분기점을 다 검사하면서 진행하는 방식이다.
 - 문자 하나씩 뽑아내기 sstream에 있는 istringstream
 - find(시작점,끝점,찾을값) - > 찾을 시 해당 위치(iterator) , 못찾을 시 end를 가르침
 - vector.erase(it)-> 해당 iterator가 가르키는 값 벡터에서 제거
+
+### 14888
+- 매개변수를 통한 백트래킹
+- Algorithm header의 max,min 함수사용
