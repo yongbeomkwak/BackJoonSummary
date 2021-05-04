@@ -5,7 +5,7 @@
 ### 길이가 정해져있음
 -   Slice
 
-    선언: var arr [] 티입명
+    선언: var arr [] 타입명
 
 ### 길이 정해져있지 않음 
 ---
@@ -14,3 +14,6 @@
 
 ##  10818.go
 -   sort.Slice, Slice 정렬법
+
+##  2675.go
+-   rune to string 시 (string(rune))
