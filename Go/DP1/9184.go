@@ -33,6 +33,7 @@ func w(a int, b int, c int) int {
 func main() {
 
 	for true {
+		reader := bufio.NewReader(os.Stdin)
 		writer := bufio.NewWriter(os.Stdout)
 		a := 0
 		b := 0
