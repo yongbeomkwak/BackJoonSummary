@@ -15,6 +15,7 @@ func max(a int, b int) int {
 }
 
 func main() {
+	//시간초과 뜨긴 함 
 	n := 0
 	fmt.Scan(&n)
 	for i := 0; i < n; i++ {
