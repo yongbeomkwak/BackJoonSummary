@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 )
 
 func max(a int, b int) int {
@@ -16,18 +18,19 @@ func main() {
 	const MAX = 1000000000
 	var dis [LMIT]int
 	var grd [LMIT]int
+	reader := bufio.NewReader(os.Stdin)
 	mincost := MAX
 	N := 0
 	result := 0
 	mindex := 0
 	L := 0
-	fmt.Scan(&N)
+	fmt.Fscan(reader, &N)
 	for i := 1; i < N; i++ { //거리 입력 받기
-		fmt.Scan(&dis[i])
+		fmt.Fscan(reader, &dis[i])
 		L += dis[i]
 	}
 	for i := 1; i < N; i++ { //cost 입력 받기
-		fmt.Scan(&grd[i])
+		fmt.Fscan(reader, &grd[i])
 		if grd[i] < mincost { //가장 적은 비용및 해당 도시 인덱스 얻음
 			mincost = grd[i]
 			mindex = i
