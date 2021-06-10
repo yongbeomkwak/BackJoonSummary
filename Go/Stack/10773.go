@@ -40,7 +40,7 @@ func (st *Stack) push(newInt int) { //포인터로 접근
 
 func (st *Stack) pop() int {
 	if st._size == 0 {
-		return -1
+		return 0
 	}
 	data := st._top.data
 	st._top = st._top.next
@@ -78,8 +78,7 @@ func main() {
 			ext, _ := reader.ReadString('\n') ;
 			text = strings.TrimSpace(text) 와 같이 한 줄을 읽어들이거나,
 			scanner.Split(bufio.ScanWords) ;
-			scanner.Scan() ;
-			text := scanner.Text()
+			scanner.Scan() ; text := scanner.Text()
 			와 같이 토큰을 하나 가져와서 a, _ := strconv.Atoi(text) 와 같이 직접 파싱하면 충분히 빠릅니다.
 
 		개인적으로 전자는 한 줄에 배열의 정보가 전부 들어올 때 strings.Fields()를 같이 활용해서 입력받을 때 편하고,
@@ -87,11 +86,10 @@ func main() {
 		후자는 데이터를 한 단어 한 단어 가져올 때 편합니다.
 		다만 당연히 둘 다 같이 쓸 수는 없으니 혼용이 필요할 땐 적절히 타협을 봐야 합니다.
 
-		----------Scanner-----------
 	*/
 	// sc := bufio.NewScanner(os.Stdin)
 	// sc.Scan()
-	// text := sc.Text() //읽어온 "한 줄"의 데이터를 Text() 메서드를 이용해 변수에 저장합니다.
+	// text := sc.Text()
 
 	/*
 		-------- Reader --------
@@ -106,22 +104,19 @@ func main() {
 	for i := 0; i < n; i++ {
 		command, _ := r.ReadString('\n')
 		command = strings.TrimSpace(command)
-		x := strings.Fields(command) //배열로 만들기
-		if len(x) > 1 {
-			tmp, _ := strconv.Atoi(x[1])
-			stack.push(tmp)
+		x, _ := strconv.Atoi(command)
+		if x == 0 {
+			stack.pop()
 		} else {
-			if x[0] == "pop" {
-				wr.WriteString(strconv.Itoa(stack.pop()) + "\n")
-			} else if x[0] == "top" {
-				wr.WriteString(strconv.Itoa(stack.top()) + "\n")
-			} else if x[0] == "empty" {
-				wr.WriteString(strconv.Itoa(stack.empty()) + "\n")
-			} else {
-				wr.WriteString(strconv.Itoa(stack.size()) + "\n")
-			}
+			stack.push(x)
 		}
 	}
+	m_size := stack.size()
+	result := 0
+	for i := 0; i < m_size; i++ {
+		result += stack.pop()
+	}
+	wr.WriteString(strconv.Itoa(result))
 	defer wr.Flush()
 
 }
