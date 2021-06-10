@@ -78,8 +78,7 @@ func main() {
 			ext, _ := reader.ReadString('\n') ;
 			text = strings.TrimSpace(text) 와 같이 한 줄을 읽어들이거나,
 			scanner.Split(bufio.ScanWords) ;
-			scanner.Scan() ;
-			text := scanner.Text()
+			scanner.Scan() ; text := scanner.Text()
 			와 같이 토큰을 하나 가져와서 a, _ := strconv.Atoi(text) 와 같이 직접 파싱하면 충분히 빠릅니다.
 
 		개인적으로 전자는 한 줄에 배열의 정보가 전부 들어올 때 strings.Fields()를 같이 활용해서 입력받을 때 편하고,
@@ -87,11 +86,10 @@ func main() {
 		후자는 데이터를 한 단어 한 단어 가져올 때 편합니다.
 		다만 당연히 둘 다 같이 쓸 수는 없으니 혼용이 필요할 땐 적절히 타협을 봐야 합니다.
 
-		----------Scanner-----------
 	*/
 	// sc := bufio.NewScanner(os.Stdin)
 	// sc.Scan()
-	// text := sc.Text() //읽어온 "한 줄"의 데이터를 Text() 메서드를 이용해 변수에 저장합니다.
+	// text := sc.Text()
 
 	/*
 		-------- Reader --------
