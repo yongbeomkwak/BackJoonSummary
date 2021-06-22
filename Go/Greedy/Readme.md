@@ -1,5 +1,8 @@
 
 # Greedy
+-   1339.go
+    -   Sort 설명 
+    -   	sort.Sort(sort.Reverse(sort.IntSlice(alpha))) //내림차순
 -   1715.go
     -   Heap을 이용한 PriorityQueue 만들기
         -  Len,Swap,Push,Pop,Less 구현 
