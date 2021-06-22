@@ -56,6 +56,19 @@ PriorityQueue 타입 본체의 크기는 포인터 1개 + int 2개 = 24 byte 이
 검증에 성공하면 그 이후로는  *Item 과 동일하게 활용할 수 있습니다 (예를 들어 .data 구조체 필드를 읽고쓰기)
 
 검증에 실패하면 런타임 에러를 일으킵니다.
+
+
+1. PriorityQueue 는 slice type 입니다. slice 를 구조체처럼 생각한다면 (배열의 메모리 주소, length, capacity) 로 이루어져 있습니다.
+
+length 는 "현재"의 데이터 크기, capacity 는 (메모리 재할당 없이) 최대로 커질 수 있는 크기 입니다.
+
+배열의 element 는 Item 을 가리키는 포인터이고, Item 은 int 하나를 가지고 있지만, slice "구조체"의 일부는 아닙니다.
+
+
+
+2. item = new(Item); item.data = conv_temp; 라고 생각하시면 됩니다.
+
+즉, Item 을 동적 할당 하고, 정해진 field 를 초기화 한 다음에, 동적 할당한 메모리 주소를 item 변수에 넣습니다.
 */
 func main() {
 	/*
