@@ -2,19 +2,10 @@ package main
 
 import (
 	"bufio"
-	"math"
 	"os"
-	"sort"
 	"strconv"
 	"strings"
 )
-
-func max(a int, b int) bool {
-	if a > b {
-		return true
-	}
-	return false
-}
 
 func main() {
 	/*
@@ -44,36 +35,70 @@ func main() {
 		-------- Reader --------
 	*/
 	r := bufio.NewReader(os.Stdin)
-	text, _ := r.ReadString('\n')  // n 입력
-	text = strings.TrimSpace(text) //뒤에 \n제거
-	N, _ := strconv.Atoi(text)     //형 변환
 	wr := bufio.NewWriter(os.Stdout)
-	result := 0
-	alpha := make([]int, 26)
-	input := make([]string, 0)
-	for i := 0; i < N; i++ {
-		temp, _ := r.ReadString('\n')
-		temp = strings.TrimSpace(temp) //뒤에 \n제거
-		input = append(input, temp)
-	}
-	for _, s := range input {
-		size := int(math.Pow(10, float64(len(s)-1)))
-
-		for _, c := range s { // c는 바로 rune(ascii) 형태
-			alpha[c-65] += size
-			size /= 10
-		}
-	}
-	sort.Sort(sort.Reverse(sort.IntSlice(alpha))) //내림차순
-	_const := 9
-	for i := 0; i < 26; i++ {
-		if alpha[i] == 0 {
-			break
-		}
-		result += _const * alpha[i]
-		_const--
-
-	}
-	wr.WriteString(strconv.Itoa(result))
+	A := make([]string, 0)
+	B := make([]string, 0)
+	C := [51][51]bool{{false}}
 	defer wr.Flush()
+	text, _ := r.ReadString('\n') // n 입력
+	N_M := strings.Fields(text)
+	N, _ := strconv.Atoi(N_M[0])
+	M, _ := strconv.Atoi(N_M[1])
+	for i := 0; i < N; i++ {
+		input_A, _ := r.ReadString('\n')
+		input_A = strings.TrimSuffix(input_A, "\n")
+		A = append(A, input_A)
+	}
+	for i := 0; i < N; i++ {
+		input_B, _ := r.ReadString('\n')
+		input_B = strings.TrimSuffix(input_B, "\n")
+		B = append(B, input_B)
+		for j := 0; j < M; j++ {
+			if A[i][j] == B[i][j] {
+				C[i][j] = true
+			}
+		}
+	}
+	answer := 0
+	if N < 3 || M < 3 {
+		for i := 0; i < N; i++ {
+			for j := 0; j < M; j++ {
+				if !C[i][j] {
+					answer = -1
+					break
+				}
+			}
+		}
+		wr.WriteString(strconv.Itoa(answer))
+	} else {
+		for i := 0; i < N-2; i++ {
+			for j := 0; j < M-2; j++ {
+				if !C[i][j] {
+					answer++
+					for p := i; p < i+3; p++ {
+						for q := j; q < j+3; q++ {
+							C[p][q] = !C[p][q]
+						}
+					}
+				}
+			}
+		}
+
+		for i := 0; i < N; i++ {
+			for j := 0; j < M; j++ {
+				if !C[i][j] {
+					answer = -1
+					break
+				}
+			}
+		}
+		wr.WriteString(strconv.Itoa(answer))
+
+	}
+
+	// for i := 0; i < N; i++ {
+	// 	text2, _ := r.ReadString('\n')   // n 입력
+	// 	text2 = strings.TrimSpace(text2) //뒤에 \n제거
+	// }
+
 }
