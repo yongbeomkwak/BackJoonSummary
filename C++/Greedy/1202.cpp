@@ -24,7 +24,7 @@ struct comp //비교 구조체
             return true;
         }
         else
-            false;
+            return false;
     }
 };
 
