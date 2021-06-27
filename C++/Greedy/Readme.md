@@ -19,7 +19,12 @@
     -   비교 시
         -   string은 str1.compare(str2)
         -   char 배열은 , strcmp(arr1,arr2) or strncmp(arr1,arr2)
-
+-   10775.cpp
+    -   [UnionFind 알고리즘](https://ip99202.github.io/posts/%EC%9C%A0%EB%8B%88%EC%98%A8-%ED%8C%8C%EC%9D%B8%EB%93%9C(Union-Find)/#:~:text=%EC%9C%A0%EB%8B%88%EC%98%A8%20%ED%8C%8C%EC%9D%B8%EB%93%9C%EB%8A%94%20%EA%B7%B8%EB%9E%98%ED%94%84%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98,%EC%B0%BE%EB%8A%94%20Find%EC%97%B0%EC%82%B0%EC%9C%BC%EB%A1%9C%20%EC%9D%B4%EB%A3%A8%EC%96%B4%EC%A7%84%EB%8B%A4.) 이용 
+    -   *유니온 파인드*는 **그래프 알고리즘**으로 두 노드가 같은 그래프에 속하는지 판별하는 알고리즘이다.
+    -   **서로소 집합**, **상호 베타적 집합**(Disjoint-Set)으로도 불린다.
+    -   노드를 합치는 Union연산과 노드의 루트 노드를 찾는 Find연산으로 이루어진다.
+    -   트리 구조로 이루어진 자료구조 중 한가지로 생각되기도 한다.
 - memset
 -   memset함수는 어떤 메모리의 시작점부터 연속된 범위를 어떤 값으로(바이트 단위) 모두 지정하고 싶을 때 사용하는 함수이다. (초기화 할 때)
 
