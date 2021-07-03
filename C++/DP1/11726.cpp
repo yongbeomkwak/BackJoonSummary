@@ -29,7 +29,7 @@ int memo[1001];
 
 int DP(int n)
 {
-    if(n<=2)
+    if (n <= 2)
     {
         return memo[n];
     }
@@ -37,7 +37,7 @@ int DP(int n)
     {
         for (int i = 3; i <= n; i++)
         {
-            memo[i]=(memo[i-1]+memo[i-2])%10007;
+            memo[i] = (memo[i - 1] + memo[i - 2]) % 10007;
         }
         return memo[n];
     }
@@ -45,16 +45,14 @@ int DP(int n)
 
 int main()
 {
-   
 
     ios_base ::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
     cin >> N;
-    memo[0]=1;
-    memo[1]=1;
-    memo[2]=2;
+    memo[0] = 1;
+    memo[1] = 1;
+    memo[2] = 2;
 
-    cout << DP(N) <<"\n";
-   
+    cout << DP(N) << "\n";
 }
