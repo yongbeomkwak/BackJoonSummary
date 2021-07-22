@@ -43,16 +43,16 @@ string bigNumAdd(string n1, string n2)
     {
         if (!n1.empty())
         {
-            sum += n1.back() - '0';
+            sum += n1.back() - '0'; //char -> int
             n1.pop_back();
         }
         if (!n2.empty())
         {
-            sum += n2.back() - '0';
+            sum += n2.back() - '0'; //char ->int
             n2.pop_back();
         }
-        result.push_back((sum % 10) + '0');
-        sum /= 10;
+        result.push_back((sum % 10) + '0'); //int -> char 
+        sum /= 10; // 0으로 만들기 
     }
 
     // 1의 자리부터 push 했으므로 뒤집어준다.
