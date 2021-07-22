@@ -11,4 +11,3 @@
 -   4.  2098.cpp
     -   TSP(Traveling Salesman problem),외판원 순환문제
     -   [BitMask 사용](https://boycoding.tistory.com/163)
-    -   
