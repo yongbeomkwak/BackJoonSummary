@@ -76,7 +76,7 @@ int BFS()
             }
             //클립보드에 있는거 붙여 넣기 위해서는
         }
-        if (clip > 0 && clip + screen < MAX) // clip에 있는거 붙여넣기 , 조건은 clip에  0보다 커야하고 
+        if (clip > 0 && clip + screen < MAX) // clip에 있는거 붙여넣기 , 조건은 clip에  0보다 커야하고 clip+screen이 MAX보다 작아야함
         {
             if (dp[screen + clip][clip] == false)
             {

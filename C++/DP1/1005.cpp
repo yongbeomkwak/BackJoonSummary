@@ -37,7 +37,7 @@ int Time[MAX];
 void topologySort()
 {
     queue<int> q;
-
+    
     for (int i = 1; i <= n; i++) //출발 지점 찾아서 넣어 준다
     {
         if (inDegree[i] == 0)
