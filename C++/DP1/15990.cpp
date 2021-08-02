@@ -8,7 +8,7 @@
 #include <vector>
 #include <queue>
 using namespace std;
-#define MAX 4001
+#define MAX 100001
 #define endl "\n"
 #define tab " "
 #define MOD 1000000009
@@ -32,26 +32,30 @@ bool comp(const int &a, const int &b)
     return a > b;
 }
 
-char s1[MAX], s2[MAX];
-int dp[MAX][MAX];
+int tc, n;
+ull dp[MAX][4];
 int main()
 {
     ios_base ::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    cin >> s1 >> s2;
-    int ans = 0;
-    for (int i = 1; i <= strlen(s1); i++)
+    dp[1][1] = 1;
+    dp[2][2] = 1;
+    dp[3][1] = 1;
+    dp[3][2] = 1;
+    dp[3][3] = 1;
+    for (int i = 4; i < MAX; i++)
     {
-        for (int j = 1; j <= strlen(s2); j++)
-        {
-            //현재 값이 i-1 과 j-1 임 , i와 j 가 아님
-            if (s1[i - 1] == s2[j - 1]) //현재 값이 같으면, 대각선 값인  [i][j]에 ,현재 값의 +1을 해준다 ,왜 대각선이냐 ? 연속하는 문자열을 봐야 하기 때문에
-            {
-                dp[i][j] = dp[i - 1][j - 1] + 1;
-                ans = max(ans, dp[i][j]);
-            }
-        }
+        dp[i][1] = (dp[i - 1][2] + dp[i - 1][3])%MOD;
+        dp[i][2] = (dp[i - 2][1] + dp[i - 2][3])%MOD;
+        dp[i][3] = (dp[i - 3][1] + dp[i - 3][2])%MOD;
     }
-    cout << ans << endl;
+    cin >> tc;
+    while (tc--)
+    {
+        cin >> n;
+        ull ans = 0;
+        ans = (dp[n][1] + dp[n][2] + dp[n][3])%MOD;
+        cout << ans << endl;
+    }
 }
