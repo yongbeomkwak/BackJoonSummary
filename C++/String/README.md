@@ -5,3 +5,4 @@
 >   ASCII code 와 String
 3.  1152
 >  strok ,strcpy 사용
+4.  gets_puts.cpp
