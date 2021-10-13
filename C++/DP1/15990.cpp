@@ -39,6 +39,7 @@ int main()
     ios_base ::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
+    //dp[i][j] = 끝이 j로 끝낫을 때 i를 만들 수 있는 경우의 수 
     dp[1][1] = 1;
     dp[2][2] = 1;
     dp[3][1] = 1;
@@ -46,7 +47,7 @@ int main()
     dp[3][3] = 1;
     for (int i = 4; i < MAX; i++)
     {
-        dp[i][1] = (dp[i - 1][2] + dp[i - 1][3])%MOD;
+        dp[i][1] = (dp[i - 1][2] + dp[i - 1][3])%MOD; // i를 만들고 끝이 1일 수 있는 경우는 바로 직전(i-1)이 2 또는 3 으로 끝나면 됨
         dp[i][2] = (dp[i - 2][1] + dp[i - 2][3])%MOD;
         dp[i][3] = (dp[i - 3][1] + dp[i - 3][2])%MOD;
     }
