@@ -2,10 +2,7 @@
 
 using namespace std;
 
-#define MAX 100001
-
 int cnt[10];
-
 int main()
 {
     ios_base::sync_with_stdio(false);
