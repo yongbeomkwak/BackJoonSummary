@@ -11,8 +11,8 @@ int main()
 
     cin >> a >> b;
 
-    const int len1 = a.length();
-    const int len2 = b.length();
+    const int len1 = a.length(); // a 문자열 길이
+    const int len2 = b.length(); //b 문자열 길이 (a<=b)
 
     int ret = 999;
 
