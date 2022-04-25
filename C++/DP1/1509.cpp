@@ -30,18 +30,14 @@ int main()
         }
     }
 
-    // tmp 상태:  !abcdef(시용 인덱스:1~tmp.size()-1)
-    for (int i = 2; i < tmp.size(); i++) //길이는 2부터 (길이 0부터 1까지 위에서 처리)
-    {
-        for (int j = 1; j < tmp.size() - i; j++)
+    for (int i = 2; i < tmp.size(); i++)         //길이는 2부터 (길이 0부터 1까지 위에서 처리)
+        for (int j = 1; j < tmp.size() - i; j++) //시작인덱스 1
         {
-            if ((tmp[j] == tmp[j + i]) && (dp[j + 1][j + i - 1]))
-                ; //끝이 같고, 사이가 true면 회문
+            if (tmp[j] == tmp[j + i] && dp[j + 1][i + j - 1]) //끝이 같고, 사이가 true면 회문
             {
                 dp[j][j + i] = true;
             }
         }
-    }
 
     result[0] = 0;
 
