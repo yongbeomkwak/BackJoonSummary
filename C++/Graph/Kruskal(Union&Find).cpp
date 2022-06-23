@@ -22,19 +22,20 @@ int root[MAX];
 
 int find(const int i)
 {
-    int rt = root[i];
+    int rt = root[i];  //현재 너드의 부모
 
     while (rt != root[rt])
     {
         rt = root[rt];
     }
-
+    //rt는 가장 상위 부모
     int c = i;
-    while (c != root[c])
+    //path compression(시간 복잡도를 나중에 갈수록 줄이기 위해)
+    while (c != root[c]) //원래 i부터 최상위 부모 까지 모든 부모 노드를 최상위 부모로 바꿈
     {
-        int pc = root[c];
-        root[c] = rt;
-        c = pc;
+        int pc = root[c]; //현재 c의 부모, 잠시 저장
+        root[c] = rt; //최상위 부모로 변경 
+        c = pc;//  다음 부모로 이동 
     }
     return rt;
 }
