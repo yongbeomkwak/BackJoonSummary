@@ -1,59 +1,81 @@
-#include <iostream>
-#include <algorithm>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-#define MAX 100000000
-//pre processor 10억
-int N = 0;
-int operatorArr[4] = {0};     // +,-,*,/ 순으로 남은 개수
-int num_Arr[100] = {0};       // 해당 연산을 할 수의 모음
-int final_max = MAX * -1 - 1; //최댓값 초깃값 -10억 -1
-int final_min = MAX + 1;      //최솟값 10억 +1
-void back(int plus, int minus, int multiple, int divide, int n, int result)
+#define endl "\n"
+#define tab " "
+#define MAX 1000000000
+#define P pair<int, int>
+int n;
+vector<long long> nums;
+int opers[4]; // 0:plus,1:minus,2:multi,3:div
+long long _max = -MAX;
+long long _min = MAX;
+
+void task(const int use_opers, vector<long long> v)
 {
-    //매개변수로 각 연산자의 남은 개수를 받음, +,-,*,/ 순으로 , n은 현재 연산 횟수,result는 현재까지의 연산 결과
-    if (n == N) //만약 연산 횟수가 N이 되면 모든 연산 끝
+    if (use_opers == n - 1) //연사자를 모두 사용했으면 최종 남아있는 값과 비교
     {
-        final_max = max(final_max, result);
-        final_min = min(final_min, result);
+        _max = max(v[0], _max);
+        _min = min(v[0], _min);
         return;
     }
-    // 1 2 3 4 5  일 때  처음 연산 해야할 놈은 2 즉 index로는 1이므로 n과 인덱스가 매칭된다
-    if (plus > 0) //plus가 0보다 크면 아직 plus를 할 수 있음
-    {
-        back(plus - 1, minus, multiple, divide, n + 1, result + num_Arr[n]);
-        // plus를해야하므로 현재 개수에서 -1 이후,연산 횟수 +1 ,결과값에 plus이므로 + 연산,현재 연산차례는 n임
-    }
-    //minus,multiple,divide 역시 같음
-    if (minus > 0)
-    {
-        back(plus, minus - 1, multiple, divide, n + 1, result - num_Arr[n]);
-    }
-    if (multiple > 0)
-    {
-        back(plus, minus, multiple - 1, divide, n + 1, result * num_Arr[n]);
-    }
-    if (divide > 0)
-    {
-        back(plus, minus, multiple, divide - 1, n + 1, result / num_Arr[n]);
-    }
-}
-int main()
-{
 
-    scanf("%d", &N); //연산 횟수 입력
-
-    for (int i = 0; i < N; i++)
-    {
-        scanf("%d", &num_Arr[i]); //연산에 사용할 숫자 입력
-    }
     for (int i = 0; i < 4; i++)
     {
-        scanf("%d", &operatorArr[i]); // 연산자 별 횟수 받음
-    }
-    back(operatorArr[0], operatorArr[1], operatorArr[2], operatorArr[3], 1, num_Arr[0]);
-    //operatorArr 0(+),1(-),2(*),3(/), 시작부터 연산했다고 생각하고 1로 시작,초기값은 0인덱스(첫번째)
 
-    printf("%d\n%d", final_max, final_min); //최대값 최솟값 출력
+        if (!opers[i])
+            continue;
+
+        vector<long long> tmp = v;
+        //가장 앞(begin)을 제거하기 위해, 연산 결과를 1번 인덱스에 젖ㅇ
+        if (i == 0) //합
+        {
+            tmp[1] += tmp[0];
+        }
+        else if (i == 1) // 차
+        {
+            tmp[1] = tmp[0] - tmp[1];
+        }
+        else if (i == 2) //곱
+        {
+            tmp[1] *= tmp[0];
+        }
+        else //나누기
+        {
+            tmp[1] = tmp[0] / tmp[1];
+        }
+        tmp.erase(tmp.begin());   //아 제거
+        opers[i] -= 1;            //사용한 오퍼레이터 감소
+        task(use_opers + 1, tmp); //다음 재귀
+        opers[i] += 1;            // 백트래킹
+    }
+}
+
+int main()
+{
+    // ios::sync_with_stdio(false);
+    // cin.tie(NULL);
+    // cout.tie(NULL);
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
+    {
+        long long tmp;
+        cin >> tmp;
+        nums.push_back(tmp);
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        int oper;
+        cin >> oper;
+        opers[i] = oper;
+    }
+
+    task(0, nums);
+    cout << _max << endl
+         << _min;
+
+    return 0;
 }
