@@ -14,9 +14,9 @@ bool is_visit[MAX] = {
 };
 int main()
 {
-    // os::sync_with_stdio(false);
-    // cin.tie(NULL);
-    // cout.tie(NULL);
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
     cin >> n;
     cin >> m;
 
